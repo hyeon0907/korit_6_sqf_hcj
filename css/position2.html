@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+
+        table, td {
+            border: 1px solid #000;
+        }
+
+        td, tr {
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+        }
+        .block-bleck{
+            box-sizing: border-box;
+            border: 1px solid black;
+            background-color: black;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            width: 100px;
+            height: 100px;  
+        }
+        .block-white{
+            box-sizing: border-box;
+            border: 1px solid black;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            width: 100px;
+            height: 100px;  
+        }
+        .tt{
+            position: absolute;
+            box-sizing: border-box;
+        }
+        .box1{
+            position: absolute;
+
+            right: 100px;
+            bottom: 300px;
+         
+        }
+        .box2{
+            position: absolute;
+
+            right: 300px;
+            bottom: 300px;
+ 
+        }
+
+        .box3{
+            position: absolute;
+
+            right: 400px;
+            bottom: 0px;
+        }
+
+        .box4{
+            position: absolute;
+
+            right: 200px;
+            bottom: 0px;
+        }
+
+        .box5{
+            position: absolute;
+
+            right: 0px;
+            bottom: 0px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="tt">
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td\></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="block-bleck box1"></div>
+        <div class="block-bleck box2"></div>
+        <div class="block-white box3"></div>
+        <div class="block-white box4"></div>
+        <div class="block-white box5"></div>
+    </div>
+    
+</body>
+</html>
