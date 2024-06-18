@@ -20,7 +20,7 @@ function renderTable() {
     userTableBody.innerHTML = userList.map(({id, name, username, password}, index) => {
         return`
             <tr>
-                <th><input type="checkbox" onchange="handleUserCheck(event)"></th>
+                <th><input type="checkbox" onchange="handleUserCheck(event) value="${id}"></th>
                 <td>${index + 1}</td>
                 <td>${id}</td>
                 <td>${name}</td>
@@ -52,12 +52,23 @@ function handleUserInputKeyDown(e) {
         if(e.target.name === "password") {
             userList = [...userList, {...user, id: getNewId()} ];
 
+            if(inputMode === 2) {
+                let findIndex = -1;
+                for(let i = 0; i < userList.length; i++) {
+                    if(userList[i].id === user.id) {
+                        findIndex = i;
+                    }
+                }
+                if(findIndex === -1) {
+                    alert("사용자 정보 수정 중 오류 발생. 관리자에게 문의하에요.");
+                    return;
+                }
+                userList[findIndex] = user;
+            }
+
             saveUserList();
             renderTable()
-
-            nameInput.value = emptyUser.name;
-            usernameInput.value = emptyUser.username;
-            passwordInput.value = emptyUser.password;
+            clearInputValue();
 
             nameInput.focus();
         }
@@ -87,6 +98,48 @@ function getNewId() {
     return  maxUserId+1;
 }
 
-function handleUsercheckUser(e) {
-    console.log(e.target.checked);
+function handleUserCheck(e) {
+    const checkBoxList = document.querySelectorAll(`input[type="checkbox"]`);
+    for(let checkbox of checkBoxList) {
+        if(checkbox === e.target) {
+            continue;
+        }
+        checkbox.checked = false;
+    }
+    if(e.target.checked){
+        inputMode = 2;
+        const [findUser] = userList.filter(user => user.id === parseInt(e.target.value));
+        setInputValue(findUser);
+        user = {
+            ...findUser
+        }
+        return;
+    }
+
+    clearInputValue();
+}
+
+function setInputValue(user) {
+    const nameInput = document.querySelector(".name-input");
+    const usernameInput = document.querySelector(".username-input");
+    const passwordInput = document.querySelector(".password-input");
+
+    nameInput.value = user.name;
+    usernameInput.value = user.username;
+    passwordInput.value = user.password;
+}
+
+function clearInputValue() {
+    const nameInput = document.querySelector(".name-input");
+    const usernameInput = document.querySelector(".username-input");
+    const passwordInput = document.querySelector(".password-input");
+
+    nameInput.value = emptyUser.name;
+    usernameInput.value = emptyUser.username;
+    passwordInput.value = emptyUser.password;
+
+    inputMode = 1;
+    user = {
+        ...emptyUser
+    }
 }
